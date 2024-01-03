@@ -1,0 +1,29 @@
+package com.load.xml.config;
+
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+
+@Configuration
+@EnableCaching
+@EnableScheduling
+public class CachingConfig {
+
+
+    @Bean
+    public CacheManager cacheManager(){
+        return new ConcurrentMapCacheManager("descriptionCache");
+    }
+
+    @CacheEvict(allEntries = true, value = {"descriptionCache"})
+    @Scheduled(fixedDelay = 60 * 1000, initialDelay = 500)
+    public void reportCacheEvict(){
+        // TODO document why this method is empty
+    }
+
+}
