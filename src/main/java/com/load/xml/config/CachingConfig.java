@@ -23,7 +23,7 @@ public class CachingConfig {
     @CacheEvict(allEntries = true, value = {"descriptionCache"})
     @Scheduled(fixedDelay = 60 * 1000, initialDelay = 500)
     public void reportCacheEvict(){
-        // TODO document why this method is empty
+        // TODO
     }
 
 }
